@@ -43,6 +43,7 @@ Write-Host "[*] WinSwift Pro indiriliyor..." -ForegroundColor Cyan
 # Eğer buraya geldiysek zaten yöneticiyiz demektir, aracı indirip çalıştırabiliriz
 $batPath = "$env:TEMP\WinSwift.bat"
 try {
+    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/cyberQbit/WinSwift/main/WinSwift.bat" -OutFile $batPath -UseBasicParsing
     I# === LINUX (LF) FORMATINI WINDOWS (CRLF) FORMATINA ZORLA VE BOM'U YOK ET ===
     $content = Get-Content $batPath -Raw
     $utf8NoBom = New-Object System.Text.UTF8Encoding $false
