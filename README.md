@@ -4,7 +4,7 @@
   <p><b>Advanced, Open-Source Windows Optimization & Privacy Shield.<br>Gelişmiş, Açık Kaynaklı Windows Optimizasyon ve Gizlilik Kalkanı.</b></p>
   
   <p>
-    <img src="https://img.shields.io/badge/Release-v2.0%20Pro-blue?style=flat-square" alt="WinSwift Version">
+    <img src="https://img.shields.io/badge/Release-v2.0%20-blue?style=flat-square" alt="WinSwift Version">
     <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="WinSwift License">
     <img src="https://img.shields.io/badge/Platform-Windows%2010%20%7C%2011-orange?style=flat-square" alt="Supported Platforms">
   </p>
