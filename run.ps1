@@ -45,8 +45,10 @@ $batPath = "$env:TEMP\WinSwift.bat"
 try {
     Invoke-WebRequest -Uri "https://raw.githubusercontent.com/cyberQbit/WinSwift/main/WinSwift.bat" -OutFile $batPath -UseBasicParsing
     
-    # === LINUX (LF) FORMATINI WINDOWS (CRLF) FORMATINA ZORLA ÇEVİR ===
-    (Get-Content $batPath) | Set-Content $batPath -Encoding UTF8
+    # === LINUX (LF) FORMATINI WINDOWS (CRLF) FORMATINA ZORLA VE BOM'U YOK ET ===
+    $content = Get-Content $batPath -Raw
+    $utf8NoBom = New-Object System.Text.UTF8Encoding $false
+    [System.IO.File]::WriteAllText($batPath, $content, $utf8NoBom)
     # =================================================================
 
     Write-Host "[✓] WinSwift Pro başarıyla indirildi ve yapılandırıldı!" -ForegroundColor Green
