@@ -33,6 +33,8 @@
   - **🔧 Advanced Operations Menu:** Dedicated sub-menu for Registry optimization, Icon Cache rebuilding, Performance Monitor, and Windows Update resets.
   - **⚡ ULTRA Mode (Run All):** One-click sequential execution of all cleaning and optimization modules with post-operation statistics.
 
+*Note: Due to some issues, I had to recreate the repository. The commit numbers and repository history do not reflect reality!*
+
 ---
 
 <div id="-türkçe">
