@@ -56,14 +56,11 @@ try {
     # ==============================================================================
     # 🚀 EFSANEVİ WINDOWS TERMINAL (WT) ENTEGRASYONU VE MAVİ EKRAN KATİLİ
     # ==============================================================================
-    # Dikkat: -Wait komutunu sildik! Mavi PowerShell uygulamayı açtığı milisaniye kapanacak.
-    
     if (Get-Command wt.exe -ErrorAction SilentlyContinue) {
-        # Eğer sistemde modern Windows Terminal varsa, CAM GİBİ arayüzle onda aç
-        Start-Process wt.exe -ArgumentList "cmd.exe /c `"$batPath`""
+        # wt.exe için boşluklu yolları tolere edecek Kurşun Geçirmez argüman:
+        Start-Process wt.exe -ArgumentList "cmd.exe /c `"`"$batPath`"`""
     } else {
-        # Eski bir Windows 10 ise ve Terminal yoksa standart CMD ile aç
-        Start-Process cmd.exe -ArgumentList "/c `"$batPath`""
+        Start-Process cmd.exe -ArgumentList "/c `"`"$batPath`"`""
     }
     
 } catch {
