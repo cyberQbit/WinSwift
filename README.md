@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://i.imgur.com/RBTRUHZ.png" alt="WinSwift Logo" width="480" height="480" style="border-radius: 0px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+  <img src="https://i.imgur.com/RBTRUHZ.png" alt="WinSwift Logo" width="580" height="180" style="border-radius: 0px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
   <h1>🧹 WinSwift Pro v2.0</h1>
   <p><b>Advanced, Open-Source Windows Optimization & Privacy Shield.<br>Gelişmiş, Açık Kaynaklı Windows Optimizasyon ve Gizlilik Kalkanı.</b></p>
   
