@@ -269,66 +269,53 @@ echo %YELLOW%[!] !msg!%RESET%
 goto :eof
 
 :: ==============================================================================
-:: MODUL 1: HIZLI TEMİZLİK (Quick Clean)
+:: MODULE 1: QUICK CLEAN (Görsel ve Matematiksel Temizlik Motoru)
 :: ==============================================================================
 :QuickClean
 cls
-call :PrintSeparator
 echo.
-echo %BOLD%%CYAN%  MODULE 1: QUICK CLEAN%RESET%
+echo %CYAN%  ==========================================================================================%RESET%
+echo %CYAN%  MODULE 1: QUICK CLEAN (Hizli Sistem Temizligi)%RESET%
+echo %CYAN%  ==========================================================================================%RESET%
 echo.
-call :PrintSeparator
+
+:: 1. ADIM: Temizlik Öncesi Diskteki Boş Alanı PowerShell ile Ölç (MB Cinsinden)
+echo %BLUE%  [*] Sistem analizi yapiliyor ve onbellekler taranoyor...%RESET%
+for /f "tokens=*" %%A in ('powershell -NoProfile -Command "[Math]::Round((Get-CimInstance Win32_LogicalDisk -Filter \"DeviceID='C:'\").FreeSpace / 1MB, 0)"') do set "SpaceBefore=%%A"
+
+:: 2. ADIM: Artistik ve Tatmin Edici Temizlik Aşamaları
+echo %GRAY%      - Kullanici Temp Klasoru siliniyor...%RESET%
+del /q /f /s "%TEMP%\*" >nul 2>&1
+rd /s /q "%TEMP%" >nul 2>&1
+mkdir "%TEMP%" >nul 2>&1
+
+echo %GRAY%      - Windows Temp Klasoru siliniyor...%RESET%
+del /q /f /s "%WINDIR%\Temp\*" >nul 2>&1
+rd /s /q "%WINDIR%\Temp" >nul 2>&1
+mkdir "%WINDIR%\Temp" >nul 2>&1
+
+echo %GRAY%      - Windows Prefetch (Gecmis) siliniyor...%RESET%
+del /q /f /s "%WINDIR%\Prefetch\*" >nul 2>&1
+
+echo %GRAY%      - Geri Donusum Kutusu parcalaniyor...%RESET%
+rd /s /q %systemdrive%\$Recycle.bin >nul 2>&1
+
+echo %GRAY%      - Windows Update Gecici Dosyalari temizleniyor...%RESET%
+del /q /f /s "%WINDIR%\SoftwareDistribution\Download\*" >nul 2>&1
+
+:: 3. ADIM: Temizlik Sonrası Ölçüm ve Farkın Hesaplanması
 echo.
+echo %BLUE%  [*] Temizlik sonrasi alan hesaplaniyor...%RESET%
+for /f "tokens=*" %%B in ('powershell -NoProfile -Command "$b=%SpaceBefore%; $a=[Math]::Round((Get-CimInstance Win32_LogicalDisk -Filter \"DeviceID='C:'\").FreeSpace / 1MB, 0); $f = $a - $b; if($f -lt 0){$f=0}; Write-Host $f"') do set "SpaceFreed=%%B"
 
-:: Temp dosyaları
-call :PrintInfo "!S_CLEANING!: Temporary files..."
-del /q /f /s "%temp%\*" >nul 2>&1
-del /q /f /s "C:\Windows\Temp\*" >nul 2>&1
-del /q /f /s "%SystemRoot%\Temp\*" >nul 2>&1
-call :PrintSuccess "User and system temp files cleaned"
-
-:: Prefetch temizleme
-call :PrintInfo "!S_CLEANING!: Prefetch cache..."
-del /q /f /s "C:\Windows\Prefetch\*" >nul 2>&1
-call :PrintSuccess "Prefetch cache cleared"
-
-:: Thumbnail cache
-call :PrintInfo "!S_CLEANING!: Thumbnail cache..."
-del /q /f /s "%LocalAppData%\Microsoft\Windows\Explorer\thumbcache_*.db" >nul 2>&1
-call :PrintSuccess "Thumbnail cache cleared"
-
-:: Recent files
-call :PrintInfo "!S_CLEANING!: Recent files..."
-del /q /f /s "%APPDATA%\Microsoft\Windows\Recent\*" >nul 2>&1
-call :PrintSuccess "Recent files cleared"
-
-:: Windows Error Reports
-call :PrintInfo "!S_CLEANING!: Windows Error Reports..."
-del /q /f /s "C:\ProgramData\Microsoft\Windows\WER\*" >nul 2>&1
-call :PrintSuccess "Error reports cleared"
-
-:: Clipboard
-call :PrintInfo "!S_CLEANING!: Clipboard..."
-echo off | clip
-call :PrintSuccess "Clipboard cleared"
-
-:: Recycle Bin
-call :PrintInfo "!S_CLEANING!: Recycle Bin..."
-rd /s /q "%SystemDrive%\$Recycle.Bin" >nul 2>&1
-call :PrintSuccess "Recycle Bin emptied"
-
-:: Memory Cache
-call :PrintInfo "!S_OPTIMIZING!: Memory cache..."
-echo %GRAY%
-wmic os set FreeMemory >nul 2>&1
-call :PrintSuccess "Memory cache optimized"
-
+:: 4. ADIM: Kullanıcıya Vurucu Sonucu Göster!
 echo.
-call :PrintSeparator
-call :PrintSuccess "Quick Clean completed successfully!"
-call :PrintSeparator
+echo %GREEN%  [OK] TEMIZLIK BASARIYLA TAMAMLANDI!%RESET%
+echo %CYAN%  [+] Sistemden Toplam Yok Edilen Cop: %SpaceFreed% MB%RESET%
 echo.
-echo %CYAN%!S_BACK!%RESET%
+echo %GRAY%  ==========================================================================================%RESET%
+echo.
+echo %BLUE%  Ana menuye donmek icin bir tusa basin...%RESET%
 pause >nul
 goto :MainMenu
 
