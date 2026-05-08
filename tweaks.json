@@ -1,55 +1,83 @@
 {
-  "Privacy": {
-    "TR": "🕵️ Gizlilik & Anti-Telemetri",
-    "EN": "🕵️ Privacy & Anti-Telemetry",
+  "Privacy_Deep_Clean": {
+    "TR": "🕵️ Derin Gizlilik & Veri Temizliği",
+    "EN": "🕵️ Deep Privacy & Data Cleanup",
     "Items": [
-      { "Name": "Windows Telemetrisini (Veri Toplama) Kapat", "Script": "Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection' -Name 'AllowTelemetry' -Value 0 -Type DWord -Force" },
-      { "Name": "Konum İzlemeyi Kapat", "Script": "Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\location' -Name 'Value' -Value 'Deny' -Force" },
-      { "Name": "Reklam Kimliğini (Ad ID) Devre Dışı Bırak", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\AdvertisingInfo' -Name 'Enabled' -Value 0 -Type DWord -Force" },
-      { "Name": "Uygulama Teşhis Verilerini Kapat", "Script": "Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\DataCollection' -Name 'LimitEnhancedDiagnosticDataWindowsInsider' -Value 0 -Type DWord -Force" },
-      { "Name": "Geri Bildirim İstemlerini Kapat", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Siuf\\Rules' -Name 'NumberOfSIUFInPeriod' -Value 0 -Type DWord -Force" },
-      { "Name": "Aktivite Geçmişini Kapat", "Script": "Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\System' -Name 'EnableActivityFeed' -Value 0 -Type DWord -Force" },
-      { "Name": "Kişiselleştirilmiş Deneyimleri Kapat", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Privacy' -Name 'TailoredExperiencesWithDiagnosticDataEnabled' -Value 0 -Type DWord -Force" }
+      { "NameTR": "El Yazısı Veri Toplamayı Kapat", "NameEN": "Disable Handwriting Data Collection", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Input\\TIPC' -Name 'Enabled' -Value 0 -Type DWord -Force" },
+      { "NameTR": "Tanılama Günlüğü Toplamayı Kapat", "NameEN": "Disable Diagnostic Log Collection", "Script": "Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\DataCollection' -Name 'AllowDeviceNameInTelemetry' -Value 0 -Type DWord -Force" },
+      { "NameTR": "Uygulama Başlatma İzlemesini Kapat", "NameEN": "Disable App Launch Tracking", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced' -Name 'Start_TrackProgs' -Value 0 -Type DWord -Force" },
+      { "NameTR": "Kamera Erişimi Bildirimlerini Kapat", "NameEN": "Disable Camera Access Notifications", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\webcam' -Name 'Value' -Value 'Deny' -Force" },
+      { "NameTR": "Mikrofon Erişimi Bildirimlerini Kapat", "NameEN": "Disable Mic Access Notifications", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\microphone' -Name 'Value' -Value 'Deny' -Force" },
+      { "NameTR": "Windows Müşteri Deneyimi Geliştirme'yi Kapat", "NameEN": "Disable CEIP", "Script": "Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\SQMClient\\Windows' -Name 'CEIPEnable' -Value 0 -Type DWord -Force" },
+      { "NameTR": "Steps Recorder (Adımları Kaydet) Kapat", "NameEN": "Disable Steps Recorder", "Script": "Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\AppCompat' -Name 'DisableUAR' -Value 1 -Type DWord -Force" }
     ]
   },
-  "Performance": {
-    "TR": "⚡ Performans & Hız Optimizasyonu",
-    "EN": "⚡ Performance & Speed Optimization",
+  "Extreme_Performance": {
+    "TR": "🚀 Ekstrem Performans & Gecikme Ayarları",
+    "EN": "🚀 Extreme Performance & Latency",
     "Items": [
-      { "Name": "Gereksiz Arka Plan Uygulamalarını Engelle", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\BackgroundAccessApplications' -Name 'GlobalUserDisabled' -Value 1 -Type DWord -Force" },
-      { "Name": "Nihai Performans (Ultimate Performance) Güç Planını Ekle", "Script": "powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61 | Out-Null" },
-      { "Name": "Game DVR ve Xbox Game Bar'ı Kapat (FPS Artışı)", "Script": "Set-ItemProperty -Path 'HKCU:\\System\\GameConfigStore' -Name 'GameDVR_Enabled' -Value 0 -Type DWord -Force; Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\GameDVR' -Name 'AllowGameDVR' -Value 0 -Type DWord -Force" },
-      { "Name": "Ağ Darboğazını (Network Throttling) Kapat", "Script": "Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile' -Name 'NetworkThrottlingIndex' -Value 4294967295 -Type DWord -Force" },
-      { "Name": "Sistem Yanıt Süresini Oyunlar İçin Optimize Et", "Script": "Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile' -Name 'SystemResponsiveness' -Value 0 -Type DWord -Force" },
-      { "Name": "Hızlı Başlatmayı (Fast Startup) Kapat (SSD Ömrü İçin)", "Script": "Set-ItemProperty -Path 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Power' -Name 'HiberbootEnabled' -Value 0 -Type DWord -Force" },
-      { "Name": "Hibernation'ı (Uyku Modu) Kapat (C: Diskinde Yer Açar)", "Script": "powercfg.exe /hibernate off" },
-      { "Name": "Görsel Animasyonları Performans İçin Kapat", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\VisualEffects' -Name 'VisualFXSetting' -Value 2 -Type DWord -Force" }
+      { "NameTR": "FSO (Tam Ekran İyileştirmeleri) Global Kapat", "NameEN": "Disable Fullscreen Optimizations Globally", "Script": "Set-ItemProperty -Path 'HKCU:\\System\\GameConfigStore' -Name 'GameDVR_FSEBehavior' -Value 2 -Type DWord -Force" },
+      { "NameTR": "Şeffaflık Efektlerini Kapat (CPU Tasarrufu)", "NameEN": "Disable Transparency Effects", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize' -Name 'EnableTransparency' -Value 0 -Type DWord -Force" },
+      { "NameTR": "Power Throttling'i Devre Dışı Bırak", "NameEN": "Disable Power Throttling", "Script": "Set-ItemProperty -Path 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Power\\PowerThrottling' -Name 'PowerThrottlingOff' -Value 1 -Type DWord -Force" },
+      { "NameTR": "GPU Donanım Hızlandırmalı Planlama (HAGS) Aç", "NameEN": "Enable HAGS (GPU Scheduling)", "Script": "Set-ItemProperty -Path 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\GraphicsDrivers' -Name 'HwSchMode' -Value 2 -Type DWord -Force" },
+      { "NameTR": "İşlemci Önceliğini Kısa Görevlere Ver (Oyun)", "NameEN": "Optimize CPU Priority for Gaming", "Script": "Set-ItemProperty -Path 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\PriorityControl' -Name 'Win32PrioritySeparation' -Value 38 -Type DWord -Force" },
+      { "NameTR": "NTFS Son Erişim Zaman Damgasını Kapat", "NameEN": "Disable NTFS Last Access Update", "Script": "fsutil behavior set disablelastaccess 1" },
+      { "NameTR": "Arama Dizini Oluşturmayı Durdur", "NameEN": "Disable Search Indexing", "Script": "Stop-Service WSearch; Set-Service WSearch -StartupType Disabled" },
+      { "NameTR": "Sanal Bellek (Pagefile) Boyutunu Sabitle (16GB)", "NameEN": "Set Static Pagefile (16GB)", "Script": "$wmi = Get-WmiObject Win32_ComputerSystem -EnableAllPrivileges; $wmi.AutomaticManagedPagefile = $False; $wmi.Put(); $pagefile = Get-WmiObject Win32_PageFileSetting; $pagefile.InitialSize = 16384; $pagefile.MaximumSize = 16384; $pagefile.Put()" }
     ]
   },
-  "UI": {
-    "TR": "🎨 Arayüz & Windows Düzeni",
-    "EN": "🎨 UI & Windows Layout",
+  "Context_Menu_Legacy": {
+    "TR": "🖱️ Sağ Tık Menüsü Geliştirmeleri",
+    "EN": "🖱️ Context Menu Enhancements",
     "Items": [
-      { "Name": "Eski (Windows 10) Sağ Tık Menüsüne Dön", "Script": "New-Item -Path 'HKCU:\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InprocServer32' -Value '' -Force | Out-Null" },
-      { "Name": "Karanlık Temayı (Dark Mode) Zorla", "Script": "Set-ItemProperty -Path 'HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize' -Name 'AppsUseLightTheme' -Value 0 -Force; Set-ItemProperty -Path 'HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize' -Name 'SystemUsesLightTheme' -Value 0 -Force" },
-      { "Name": "Gizli Dosyaları ve Klasörleri Göster", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced' -Name 'Hidden' -Value 1 -Force" },
-      { "Name": "Dosya Uzantılarını (.exe, .zip vb.) Göster", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced' -Name 'HideFileExt' -Value 0 -Force" },
-      { "Name": "Başlat Menüsündeki Bing Arama Sonuçlarını Kapat", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Policies\\Microsoft\\Windows\\Explorer' -Name 'DisableSearchBoxSuggestions' -Value 1 -Type DWord -Force" },
-      { "Name": "Görev Çubuğundaki 'Widget'ları (Hava Durumu) Kaldır", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced' -Name 'TaskbarDa' -Value 0 -Force" },
-      { "Name": "Görev Çubuğundaki Sohbet (Chat/Meet) İkonunu Kaldır", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced' -Name 'TaskbarMn' -Value 0 -Force" },
-      { "Name": "Masaüstündeki Kısayol Oklarını Kaldır", "Script": "New-Item -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Icons' -Force | Out-Null; Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Icons' -Name '29' -Value '' -Force" }
+      { "NameTR": "'Sahipliği Al' Seçeneği Ekle", "NameEN": "Add 'Take Ownership' to Menu", "Script": "New-Item -Path 'HKCR:\\*\\shell\\runas' -Value 'Sahipliği Al' -Force; Set-ItemProperty -Path 'HKCR:\\*\\shell\\runas' -Name 'HasLUAShield' -Value ''; New-Item -Path 'HKCR:\\*\\shell\\runas\\command' -Value 'cmd.exe /c takeown /f \"%1\" && icacls \"%1\" /grant administrators:F' -Force" },
+      { "NameTR": "'Not Deteri ile Aç' Ekle", "NameEN": "Add 'Open with Notepad' to All Files", "Script": "New-Item -Path 'HKCR:\\*\\shell\\Notepad' -Value 'Not Defteri ile Aç' -Force; New-Item -Path 'HKCR:\\*\\shell\\Notepad\\command' -Value 'notepad.exe %1' -Force" },
+      { "NameTR": "'Komut Satırını Burada Aç' (Admin) Ekle", "NameEN": "Add 'Open CMD here' (Admin)", "Script": "New-Item -Path 'HKCR:\\Directory\\shell\\runas' -Value 'CMD Burada (Admin)' -Force; New-Item -Path 'HKCR:\\Directory\\shell\\runas\\command' -Value 'cmd.exe /s /k pushd \"%V\"' -Force" },
+      { "NameTR": "Gönder Menüsünden Gereksizleri Kaldır", "NameEN": "Clean 'Send To' Menu", "Script": "Remove-Item -Path \"$env:APPDATA\\Microsoft\\Windows\\SendTo\\*\" -Exclude \"*.lnk\" -Recurse" },
+      { "NameTR": "Birlikte Aç Menüsünde Web'de Ara'yı Kapat", "NameEN": "Disable 'Look for app in Store'", "Script": "Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\Explorer' -Name 'NoUseStoreOpenWith' -Value 1 -Type DWord -Force" }
     ]
   },
-  "Advanced": {
-    "TR": "⚠️ İleri Düzey Ayarlar & Kısıtlamalar",
-    "EN": "⚠️ Advanced Tweaks & Restrictions",
+  "Explorer_UI_Fixes": {
+    "TR": "📂 Dosya Gezgini & Arayüz Düzeltmeleri",
+    "EN": "📂 Explorer & UI Tweaks",
     "Items": [
-      { "Name": "Windows Otomatik Güncellemeleri Devre Dışı Bırak", "Script": "Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU' -Name 'NoAutoUpdate' -Value 1 -Type DWord -Force" },
-      { "Name": "Sürücülerin (Driver) Otomatik Güncellenmesini Engelle", "Script": "Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate' -Name 'ExcludeWUDriversInQualityUpdate' -Value 1 -Type DWord -Force" },
-      { "Name": "Windows Defender'ı Kapat (ÖNERİLMEZ!)", "Script": "Set-MpPreference -DisableRealtimeMonitoring $true -ErrorAction SilentlyContinue" },
-      { "Name": "IPv6'yı Devre Dışı Bırak", "Script": "Set-ItemProperty -Path 'HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Tcpip6\\Parameters' -Name 'DisabledComponents' -Value 255 -Type DWord -Force" },
-      { "Name": "Teredo'yu Kapat (P2P/Xbox Ağını Keser)", "Script": "netsh interface teredo set state disabled | Out-Null" },
-      { "Name": "Fare İvmesini (Mouse Acceleration) Kapat", "Script": "Set-ItemProperty -Path 'HKCU:\\Control Panel\\Mouse' -Name 'MouseSpeed' -Value 0 -Force" }
+      { "NameTR": "Bu Bilgisayar'dan '3D Nesneler'i Kaldır", "NameEN": "Remove '3D Objects' from This PC", "Script": "Remove-Item -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\MyComputer\\NameSpace\\{0DB005D8-0520-4359-ADC5-857572627033}' -ErrorAction SilentlyContinue" },
+      { "NameTR": "Dosya Gezgini'ni 'Bu Bilgisayar' ile Başlat", "NameEN": "Open Explorer to 'This PC'", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced' -Name 'LaunchTo' -Value 1 -Type DWord -Force" },
+      { "NameTR": "Snap Assist (Pencere Yakalama) Kapat", "NameEN": "Disable Snap Assist", "Script": "Set-ItemProperty -Path 'HKCU:\\Control Panel\\Desktop' -Name 'WindowArrangementActive' -Value 0 -Force" },
+      { "NameTR": "Masaüstü Simgelerini (Bilgisayar, Kullanıcı) Göster", "NameEN": "Show Desktop Icons (PC, User)", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\HideDesktopIcons\\NewStartPanel' -Name '{20D04FE0-3AEA-1069-A2D8-08002B30309D}' -Value 0 -Type DWord -Force" },
+      { "NameTR": "Geri Dönüşüm Kutusu İsmini Değiştir (Çöp Kutusu)", "NameEN": "Rename Recycle Bin", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\CLSID\\{645FF040-5081-101B-9F08-00AA002F954E}' -Name '(Default)' -Value 'Çöp Kutusu' -Force" }
+    ]
+  },
+  "Network_Internet": {
+    "TR": "🌐 Ağ & İnternet Optimizasyonu",
+    "EN": "🌐 Network & Internet Tweaks",
+    "Items": [
+      { "NameTR": "Google DNS Kullan (8.8.8.8 / 8.8.4.4)", "NameEN": "Set Google DNS", "Script": "Set-DnsClientServerAddress -InterfaceAlias (Get-NetAdapter | Where-Object {$_.Status -eq 'Up'}).Name -ServerAddresses ('8.8.8.8','8.8.4.4')" },
+      { "NameTR": "Cloudflare DNS Kullan (1.1.1.1)", "NameEN": "Set Cloudflare DNS", "Script": "Set-DnsClientServerAddress -InterfaceAlias (Get-NetAdapter | Where-Object {$_.Status -eq 'Up'}).Name -ServerAddresses ('1.1.1.1','1.0.0.1')" },
+      { "NameTR": "TCP Chimney Offload Kapat", "NameEN": "Disable TCP Chimney Offload", "Script": "netsh int tcp set global chimney=disabled" },
+      { "NameTR": "ECN (Explicit Congestion Notification) Kapat", "NameEN": "Disable ECN Capability", "Script": "netsh int tcp set global ecncapability=disabled" },
+      { "NameTR": "NetBIOS over TCP/IP Kapat (Hız İçin)", "NameEN": "Disable NetBIOS", "Script": "Set-ItemProperty -Path 'HKLM:\\SYSTEM\\CurrentControlSet\\Services\\NetBT\\Parameters\\Interfaces\\Tcpip*' -Name 'NetbiosOptions' -Value 2 -Force" }
+    ]
+  },
+  "Services_Debloat": {
+    "TR": "🧹 Servis Temizliği (Gereksizleri Kapat)",
+    "EN": "🧹 Service Debloat",
+    "Items": [
+      { "NameTR": "Bağlı Kullanıcı Deneyimleri (Telemetry) Kapat", "NameEN": "Disable Connected User Experiences", "Script": "Stop-Service DiagTrack; Set-Service DiagTrack -StartupType Disabled" },
+      { "NameTR": "Faks Servisini Kapat", "NameEN": "Disable Fax Service", "Script": "Stop-Service Fax; Set-Service Fax -StartupType Disabled" },
+      { "NameTR": "Uzak Masaüstü Yardımını Kapat", "NameEN": "Disable Remote Assistance", "Script": "Set-ItemProperty -Path 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Remote Assistance' -Name 'fAllowToGetHelp' -Value 0 -Force" },
+      { "NameTR": "Wallet (Cüzdan) Servisini Kapat", "NameEN": "Disable Wallet Service", "Script": "Stop-Service WalletService; Set-Service WalletService -StartupType Disabled" },
+      { "NameTR": "Dokunmatik Klavye Panelini Kapat", "NameEN": "Disable Touch Keyboard Service", "Script": "Stop-Service TabletInputService; Set-Service TabletInputService -StartupType Disabled" }
+    ]
+  },
+  "System_Security_Hardening": {
+    "TR": "🔐 Sistem Güvenliğini Sıkılaştır",
+    "EN": "🔐 System Security Hardening",
+    "Items": [
+      { "NameTR": "Otomatik USB Çalıştırmayı Kapat (Autorun)", "NameEN": "Disable USB Autorun", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer' -Name 'NoDriveTypeAutoRun' -Value 255 -Type DWord -Force" },
+      { "NameTR": "Windows SmartScreen'i Kapat", "NameEN": "Disable SmartScreen", "Script": "Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer' -Name 'SmartScreenEnabled' -Value 'Off' -Force" },
+      { "NameTR": "Meltdown & Spectre Korumasını Kontrol Et", "NameEN": "Enable Meltdown/Spectre Protection", "Script": "Set-ItemProperty -Path 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management' -Name 'FeatureSettingsOverride' -Value 0 -Type DWord -Force" },
+      { "NameTR": "Uzak Kayıt Defteri Erişimini Kapat", "NameEN": "Disable Remote Registry Access", "Script": "Set-Service RemoteRegistry -StartupType Disabled" }
     ]
   }
 }
