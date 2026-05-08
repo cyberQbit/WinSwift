@@ -1,15 +1,30 @@
 {
-  "Sistem ve Gizlilik": [
-    { "Name": "Windows Telemetrisini (Veri Toplamayi) Kapat", "Script": "Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection' -Name 'AllowTelemetry' -Value 0 -Type DWord -Force" },
-    { "Name": "Bing Arama Sonuclarini Baslat Menusunden Kaldir", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Policies\\Microsoft\\Windows\\Explorer' -Name 'DisableSearchBoxSuggestions' -Value 1 -Type DWord -Force" }
-  ],
-  "Performans ve Hiz": [
-    { "Name": "Nihai Performans (Ultimate Performance) Planini Ekle", "Script": "powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61 | Out-Null" },
-    { "Name": "Gereksiz Arka Plan Uygulamalarini Engelle", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\BackgroundAccessApplications' -Name 'GlobalUserDisabled' -Value 1 -Type DWord -Force" }
-  ],
-  "Arayuz ve Duzen": [
-    { "Name": "Windows 11 Eski Sag Tik Menusune Don", "Script": "New-Item -Path 'HKCU:\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InprocServer32' -Value '' -Force | Out-Null" },
-    { "Name": "Gizli Dosya ve Klasorleri Goster", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced' -Name 'Hidden' -Value 1 -Force" },
-    { "Name": "Dosya Uzantilarini (.exe, .bat) Goster", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced' -Name 'HideFileExt' -Value 0 -Force" }
-  ]
+  "Essential": {
+    "TR": "⚡ Temel Optimizasyonlar",
+    "EN": "⚡ Essential Tweaks",
+    "Items": [
+      { "Name": "Windows Telemetrisini Devre Dışı Bırak", "Script": "Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection' -Name 'AllowTelemetry' -Value 0 -Type DWord -Force" },
+      { "Name": "Gereksiz Arka Plan Uygulamalarını Kapat", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\BackgroundAccessApplications' -Name 'GlobalUserDisabled' -Value 1 -Type DWord -Force" },
+      { "Name": "Konum İzlemeyi Kapat", "Script": "Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\location' -Name 'Value' -Value 'Deny' -Force" },
+      { "Name": "Görev Çubuğundan Bing Aramayı Kaldır", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Policies\\Microsoft\\Windows\\Explorer' -Name 'DisableSearchBoxSuggestions' -Value 1 -Type DWord -Force" }
+    ]
+  },
+  "Advanced": {
+    "TR": "⚠️ Gelişmiş Ayarlar (Dikkat)",
+    "EN": "⚠️ Advanced Tweaks (Caution)",
+    "Items": [
+      { "Name": "Eski Sağ Tık Menüsüne Dön (Win 11)", "Script": "New-Item -Path 'HKCU:\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InprocServer32' -Value '' -Force | Out-Null" },
+      { "Name": "Windows Defender'ı Kapat (ÖNERİLMEZ!)", "Script": "Set-MpPreference -DisableRealtimeMonitoring $true" },
+      { "Name": "IPv6'yı Devre Dışı Bırak", "Script": "Set-ItemProperty -Path 'HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Tcpip6\\Parameters' -Name 'DisabledComponents' -Value 255 -Type DWord -Force" }
+    ]
+  },
+  "UI": {
+    "TR": "🎨 Arayüz & Görünüm",
+    "EN": "🎨 UI & Appearance",
+    "Items": [
+      { "Name": "Karanlık Temayı (Dark Mode) Zorla", "Script": "Set-ItemProperty -Path 'HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize' -Name 'AppsUseLightTheme' -Value 0 -Force; Set-ItemProperty -Path 'HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize' -Name 'SystemUsesLightTheme' -Value 0 -Force" },
+      { "Name": "Gizli Dosyaları Göster", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced' -Name 'Hidden' -Value 1 -Force" },
+      { "Name": "Dosya Uzantılarını (.exe) Göster", "Script": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced' -Name 'HideFileExt' -Value 0 -Force" }
+    ]
+  }
 }
