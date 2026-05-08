@@ -31,7 +31,7 @@
     "EN": "🖱️ Context Menu Enhancements",
     "Items": [
       { "NameTR": "'Sahipliği Al' Seçeneği Ekle", "NameEN": "Add 'Take Ownership' to Menu", "Script": "New-Item -Path 'HKCR:\\*\\shell\\runas' -Value 'Sahipliği Al' -Force; Set-ItemProperty -Path 'HKCR:\\*\\shell\\runas' -Name 'HasLUAShield' -Value ''; New-Item -Path 'HKCR:\\*\\shell\\runas\\command' -Value 'cmd.exe /c takeown /f \"%1\" && icacls \"%1\" /grant administrators:F' -Force" },
-      { "NameTR": "'Not Deteri ile Aç' Ekle", "NameEN": "Add 'Open with Notepad' to All Files", "Script": "New-Item -Path 'HKCR:\\*\\shell\\Notepad' -Value 'Not Defteri ile Aç' -Force; New-Item -Path 'HKCR:\\*\\shell\\Notepad\\command' -Value 'notepad.exe %1' -Force" },
+      { "NameTR": "'Not Defteri ile Aç' Ekle", "NameEN": "Add 'Open with Notepad' to All Files", "Script": "New-Item -Path 'HKCR:\\*\\shell\\Notepad' -Value 'Not Defteri ile Aç' -Force; New-Item -Path 'HKCR:\\*\\shell\\Notepad\\command' -Value 'notepad.exe %1' -Force" },
       { "NameTR": "'Komut Satırını Burada Aç' (Admin) Ekle", "NameEN": "Add 'Open CMD here' (Admin)", "Script": "New-Item -Path 'HKCR:\\Directory\\shell\\runas' -Value 'CMD Burada (Admin)' -Force; New-Item -Path 'HKCR:\\Directory\\shell\\runas\\command' -Value 'cmd.exe /s /k pushd \"%V\"' -Force" },
       { "NameTR": "Gönder Menüsünden Gereksizleri Kaldır", "NameEN": "Clean 'Send To' Menu", "Script": "Remove-Item -Path \"$env:APPDATA\\Microsoft\\Windows\\SendTo\\*\" -Exclude \"*.lnk\" -Recurse" },
       { "NameTR": "Birlikte Aç Menüsünde Web'de Ara'yı Kapat", "NameEN": "Disable 'Look for app in Store'", "Script": "Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\Explorer' -Name 'NoUseStoreOpenWith' -Value 1 -Type DWord -Force" }
